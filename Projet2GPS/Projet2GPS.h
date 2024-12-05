@@ -5,6 +5,11 @@
 #include "QSerialPort"
 #include "qserialportinfo.h"
 
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QDebug>
+
 class Projet2GPS : public QMainWindow
 {
     Q_OBJECT
@@ -16,6 +21,10 @@ public:
 private:
     Ui::Projet2GPSClass ui;
     QSerialPort* port;
+    QString readBuffer;
+
+    void ConnectToDatabase();
+    void DecodeNMEATrame(const QString& nmeaTram);
 
 public slots:
     void OnOpenPortButtonClicked();
